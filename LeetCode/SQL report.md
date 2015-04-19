@@ -55,3 +55,29 @@ SELECT (
     LIMIT 1, 1
 )
 ```
+
+### 177. [Nth Highest Salary](https://leetcode.com/problems/nth-highest-salary/)
+
+>**Key Point **: The query is same as that in Pro.176, the only difference is it takes parameter N into SQL query.
+
+Code:
+``` SQL
+CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+BEGIN
+    SET N = N - 1;
+    RETURN (
+        # Write your MySQL query statement below.
+        SELECT (
+            SELECT DISTINCT
+                Salary
+            FROM
+                Employee
+            ORDER BY
+                Salary DESC
+            LIMIT N, 1
+        )
+    );
+END
+```
+
+>**Notice**: MySQL can only take numeric constants in the `LIMIT` syntax.
